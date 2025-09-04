@@ -97,7 +97,7 @@ CONFIG_SCHEMA = cv.All(
 async def entity_base_code_gen(var, config):
     await cg.register_parented(var, config[CONF_BLE_ADV_CONTROLLER_ID])
     await cg.register_component(var, config)
-    await cg.setup_component(var, config)
+
     cg.add(var.init())
     cg.add(var.set_index(config[CONF_INDEX]))
 
