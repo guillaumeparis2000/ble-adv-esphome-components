@@ -9,7 +9,6 @@ from esphome.const import (
     CONF_VARIANT,
     PLATFORM_ESP32,
 )
-from esphome.cpp_helpers import setup_entity
 
 from .codec import (
     BASE_CODEC_SCHEMA,
@@ -122,7 +121,7 @@ DEVICE_BASE_CONFIG_SCHEMA = cv.ENTITY_BASE_SCHEMA.extend(
 async def setup_ble_adv_device(var, config):
     await cg.register_component(var, config)
     await cg.register_parented(var, config[CONF_BLE_ADV_HANDLER_ID])
-    await setup_entity(var, config)
+    await cg.setup_component(var, config)
     if CONF_BLE_ADV_CODEC_ID in config:
         codec = await cg.get_variable(config[CONF_BLE_ADV_CODEC_ID])
         cg.add(var.init(codec.get_encoding(), codec.get_variant()))
