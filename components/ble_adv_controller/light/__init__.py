@@ -110,7 +110,6 @@ CONFIG_SCHEMA = cv.All(
 async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
     await entity_base_code_gen(var, config)
-    cg.add(cg.App.register_light(var))
     await light.setup_light_core_(var, var, config)
     if config[CONF_TYPE] == "onoff":
         cg.add(var.set_traits())
