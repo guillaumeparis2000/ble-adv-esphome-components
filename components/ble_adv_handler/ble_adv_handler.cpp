@@ -563,7 +563,6 @@ void BleAdvSelect::control(const std::string &value) {
 }
 
 void BleAdvSelect::sub_init() {
-  App.register_select_internal(this);
   this->rtc_ = global_preferences->make_preference<uint32_t>(this->get_object_id_hash());
   uint32_t restored;
   if (this->rtc_.load(&restored)) {
@@ -582,7 +581,6 @@ void BleAdvNumber::control(float value) {
 }
 
 void BleAdvNumber::sub_init() {
-  App.register_number_internal(this);
   this->rtc_ = global_preferences->make_preference<float>(this->get_object_id_hash());
   float restored;
   if (this->rtc_.load(&restored)) {
